@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IP_Changer", "IP_Changer\IP_Changer.csproj", "{FD93C125-5F3A-4455-AF12-26EDABC26699}"
+EndProject
+Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "setup_advinst", "setup_advinst\setup_advinst.aiproj", "{154F01DA-A2BE-4F13-B274-7B2CED3F3200}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		All|Any CPU = All|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD93C125-5F3A-4455-AF12-26EDABC26699}.All|Any CPU.ActiveCfg = Release|Any CPU
+		{FD93C125-5F3A-4455-AF12-26EDABC26699}.All|Any CPU.Build.0 = Release|Any CPU
+		{FD93C125-5F3A-4455-AF12-26EDABC26699}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD93C125-5F3A-4455-AF12-26EDABC26699}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD93C125-5F3A-4455-AF12-26EDABC26699}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD93C125-5F3A-4455-AF12-26EDABC26699}.Release|Any CPU.Build.0 = Release|Any CPU
+		{154F01DA-A2BE-4F13-B274-7B2CED3F3200}.All|Any CPU.ActiveCfg = DefaultBuild
+		{154F01DA-A2BE-4F13-B274-7B2CED3F3200}.All|Any CPU.Build.0 = DefaultBuild
+		{154F01DA-A2BE-4F13-B274-7B2CED3F3200}.Debug|Any CPU.ActiveCfg = Debug
+		{154F01DA-A2BE-4F13-B274-7B2CED3F3200}.Debug|Any CPU.Build.0 = Debug
+		{154F01DA-A2BE-4F13-B274-7B2CED3F3200}.Release|Any CPU.ActiveCfg = DefaultBuild
+		{154F01DA-A2BE-4F13-B274-7B2CED3F3200}.Release|Any CPU.Build.0 = DefaultBuild
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AEBBA2CC-D6BA-4055-9AE0-FAF0B9C038F3}
+	EndGlobalSection
+EndGlobal

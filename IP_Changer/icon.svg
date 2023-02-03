@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   sodipodi:docname="icon.svg"
+   inkscape:export-filename="icon.png"
+   inkscape:export-xdpi="64.050423"
+   inkscape:export-ydpi="64.050423"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.97993828"
+     inkscape:cx="169.39842"
+     inkscape:cy="176.54173"
+     inkscape:window-width="1360"
+     inkscape:window-height="705"
+     inkscape:window-x="1272"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Vrstva 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.655;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+       id="rect65"
+       width="25.379999"
+       height="25.379999"
+       x="53.999996"
+       y="31.860001"
+       ry="3.5319984" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:Junegull;-inkscape-font-specification:'Junegull Bold';letter-spacing:0px;word-spacing:0px;fill:#901700;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="57.643349"
+       y="52.197514"
+       id="text171"><tspan
+         sodipodi:role="line"
+         id="tspan169"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Junegull;-inkscape-font-specification:'Junegull Bold';stroke-width:0.264583;fill:#901700;fill-opacity:1"
+         x="57.643349"
+         y="52.197514">IP</tspan></text>
+  </g>
+</svg>
