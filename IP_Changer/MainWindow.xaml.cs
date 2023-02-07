@@ -16,6 +16,7 @@ using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Management;
 using System.Diagnostics;
+using System.Windows.Threading;
 
 namespace IP_Changer
 {
@@ -48,7 +49,10 @@ namespace IP_Changer
 
             FindIntefaces(NetworkInterfaceType.Ethernet,ref SocketList);
             SocketList.SelectedIndex = findInterface(dataWriter.activeID);
-
+            foreach (var res in dataWriter.resources)
+            {
+                ipGrid.Items.Add(res.Key);
+            }
             SocketList_SelectionChanged(null, null);
 
 
@@ -315,6 +319,7 @@ namespace IP_Changer
             catch
             {}
             dataWriter.write(activeID);
+            dataWriter.save();
         }
 
         private void Button_OpenIPMenu(object sender, RoutedEventArgs e)
@@ -334,9 +339,99 @@ namespace IP_Changer
             }
         }
 
+        private void StartCloseTimer()
+        {
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(2d);
+            timer.Tick += TimerTick;
+            timer.Start();
+        }
+        private void TimerTick(object sender, EventArgs e)
+        {
+            DispatcherTimer timer = (DispatcherTimer)sender;
+            timer.Stop();
+            timer.Tick -= TimerTick;
+            this.myPopup.IsOpen = false;
+        }
         private void Add_Set(object sender, RoutedEventArgs e)
         {
-            ipGrid.Items.Add(dataset.ipAddress);
+            try {
+                dataWriter.update(
+                    IpInput.Text,
+                    new SocketDataset(
+                        IpInput.Text,
+                        maskInput.Text,
+                        true, 
+                        gatewayInput.Text,
+                        0));
+                ipGrid.Items.Add(IpInput.Text);
+            }
+            catch(Exception ex)
+            {
+                myPopup.IsOpen = true;
+                StartCloseTimer();
+            }
+        }
+
+
+        private void selectIP(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ListViewItem senderLV = (ListViewItem)sender;
+            Debug.WriteLine("IP.selected");
+            Debug.WriteLine(e);
+            Debug.WriteLine(senderLV);
+            SocketDataset selectedDataset;
+            try
+            {
+                string name = (string)(senderLV.Content);
+                selectedDataset = (SocketDataset)dataWriter.get(name);
+            }
+            catch (Exception ex)
+            {
+                selectedDataset = dataset;
+                Debug.WriteLine(ex.ToString());
+            }
+            dataset.ipAddress = selectedDataset.ipAddress;
+            dataset.mask = selectedDataset.mask;
+            dataset.defaultGateway = selectedDataset.defaultGateway;
+            dataset.adapterIndex = dataset.adapterIndex;
+            dataset.isStatic = true;
+            Button_Revert(null, null);
+        }
+
+        private void deleteItem(object sender, RoutedEventArgs e)
+        {
+            dataWriter.remove((string)ipGrid.SelectedItem);
+            ipGrid.Items.Remove(ipGrid.SelectedItem);
+        }
+
+        private void select(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("IP.selected");
+            Debug.WriteLine(e);
+            Debug.WriteLine((string)ipGrid.SelectedItem);
+            SocketDataset selectedDataset;
+            try
+            {
+                string name = (string)ipGrid.SelectedItem;
+                selectedDataset = (SocketDataset)dataWriter.get(name);
+            }
+            catch (Exception ex)
+            {
+                selectedDataset = dataset;
+                Debug.WriteLine(ex.ToString());
+            }
+            dataset.ipAddress = selectedDataset.ipAddress;
+            dataset.mask = selectedDataset.mask;
+            dataset.defaultGateway = selectedDataset.defaultGateway;
+            dataset.adapterIndex = dataset.adapterIndex;
+            dataset.isStatic = true;
+            Button_Revert(null, null);
         }
     }
 }
