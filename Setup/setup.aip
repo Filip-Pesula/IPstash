@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="19.5" version="19.5" Modules="simple" RootPath="." Language="en" Id="{204A101C-5BEB-4D15-AAEB-4FBDD51E4965}">
-  <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
-    <ROW Name="HiddenItems" Value="AppXProductDetailsComponent;AppXDependenciesComponent;AppXAppDetailsComponent;AppXVisualAssetsComponent;AppXCapabilitiesComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;FixupComponent;MsiXDiffComponent;MsixManifestEditorComponent"/>
-  </COMPONENT>
+<DOCUMENT Type="Advanced Installer" CreateVersion="19.5" version="20.3.1" Modules="simple" RootPath="." Language="en" Id="{204A101C-5BEB-4D15-AAEB-4FBDD51E4965}">
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
     <ROW Property="AI_CURRENT_YEAR" Value="2023" ValueLocId="-"/>
-    <ROW Property="AI_PACKAGING_TOOL" Value="Advanced Installer 19.5 build 36301275" ValueLocId="-"/>
+    <ROW Property="AI_PACKAGING_TOOL" Value="Advanced Installer 20.3.1 build dae8a046" ValueLocId="-"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_IP_Changer.exe" Value="..\IP_Changer\bin\Release"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_IP_Changer.exe.config" Value="..\IP_Changer\bin\Release"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_IP_Changer.exe" Value="IP_Changer.exe"/>
@@ -117,6 +114,7 @@
     <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
     <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_PRESERVE_INSTALL_TYPE" Type="65" Source="aicustact.dll" Target="PreserveInstallType"/>
     <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
     <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
@@ -148,6 +146,7 @@
     <ROW Action="AI_ResolveKnownFolders" Sequence="53"/>
     <ROW Action="AI_DpiContentScale" Sequence="52"/>
     <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+    <ROW Action="AI_PRESERVE_INSTALL_TYPE" Sequence="199"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
     <ROW Condition="((VersionNT &lt;&gt; 501) AND (VersionNT &lt;&gt; 502))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="DefaultBuild"/>
@@ -165,6 +164,9 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
     <ROW Shortcut="AI_PROPPATH_FILENAME_PERBUILD_IP_Ch" Directory_="DesktopFolder" Name="IP_CHA~1.EXE|[|AI_PROPPATH_FILENAME_PERBUILD_IP_Changer.exe]" Component_="AI_PROPPATH_FILENAME_PERBUILD_IP_Changer.exe" Target="[#IP_Changer.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
     <ROW Shortcut="IP_Changer" Directory_="SHORTCUTDIR" Name="IP_CHA~1|IP_Changer" Component_="AI_PROPPATH_FILENAME_PERBUILD_IP_Changer.exe" Target="[#IP_Changer.exe]" Hotkey="0" IconIndex="0" ShowCmd="1"/>
+    <ROW Shortcut="IP_Changer_1" Directory_="SHORTCUTDIR" Name="IP_CHA~2|IP_Changer" Component_="AI_PROPPATH_FILENAME_PERBUILD_IP_Changer.exe" Target="[#IP_Changer.exe]" Hotkey="0" IconIndex="0" ShowCmd="1"/>
+    <ROW Shortcut="IP_Changer_2" Directory_="SHORTCUTDIR" Name="IP_CHA~3|IP_Changer" Component_="AI_PROPPATH_FILENAME_PERBUILD_IP_Changer.exe" Target="[#IP_Changer.exe]" Hotkey="0" IconIndex="0" ShowCmd="1"/>
+    <ROW Shortcut="IP_Changer_3" Directory_="SHORTCUTDIR" Name="IP_CHA~4|IP_Changer" Component_="AI_PROPPATH_FILENAME_PERBUILD_IP_Changer.exe" Target="[#IP_Changer.exe]" Hotkey="0" IconIndex="0" ShowCmd="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
@@ -174,7 +176,7 @@
     <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.VsProjectComponent">
-    <ROW ProjectId="{fd93c125-5f3a-4455-af12-26edabc26699}" ProjectName="IP_Changer" OutputGroup="PrimaryOutput" OutputFile="IP_Changer.exe" OutputFileShortcut="IP_Changer"/>
+    <ROW ProjectId="{fd93c125-5f3a-4455-af12-26edabc26699}" ProjectName="IP_Changer" OutputGroup="PrimaryOutput" OutputFile="IP_Changer.exe" OutputFileShortcut="IP_Changer_3"/>
     <ROW ProjectId="{fd93c125-5f3a-4455-af12-26edabc26699}" ProjectName="IP_Changer" OutputGroup="PrimaryOutput" OutputFile="IP_Changer.exe.config"/>
   </COMPONENT>
 </DOCUMENT>
