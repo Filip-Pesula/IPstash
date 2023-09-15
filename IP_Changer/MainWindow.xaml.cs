@@ -304,6 +304,10 @@ namespace IP_Changer
 
         private void Button_Reload(object sender, RoutedEventArgs e)
         {
+            if (SocketList.SelectedIndex == -1)
+            {
+                return;
+            }
             string currentId = intefaces[SocketList.SelectedIndex].Id;
             FindIntefaces(NetworkInterfaceType.Ethernet, ref SocketList);
             SocketList.SelectedIndex = findInterface(currentId);
