@@ -25,6 +25,8 @@ namespace IP_Changer
     /// </summary>
     public partial class MainWindow : Window
     {
+        readonly List<NetworkInterfaceType> availableInterfaces = new List<NetworkInterfaceType>{ NetworkInterfaceType.Ethernet, NetworkInterfaceType.Wireless80211 };
+        readonly List<Brush> interfaceTint = new List<Brush> { Brushes.LightGray,Brushes.Olive };
         List<NetworkInterface> intefaces = new List<NetworkInterface>();
         DataWriter dataWriter;
         SocketDataset dataset = new SocketDataset("0.0.0.0", "0.0.0.0",false, "0.0.0.0",-1);
@@ -47,7 +49,7 @@ namespace IP_Changer
             IPselection.Children.Add(selectIP1);
             */
 
-            FindIntefaces(NetworkInterfaceType.Ethernet,ref SocketList);
+            FindIntefaces(availableInterfaces, ref SocketList);
             SocketList.SelectedIndex = findInterface(dataWriter.activeID);
             foreach (var res in dataWriter.resources)
             {
@@ -57,17 +59,18 @@ namespace IP_Changer
 
 
         }
-        void FindIntefaces(NetworkInterfaceType _type,ref ComboBox sl)
+        void FindIntefaces(List<NetworkInterfaceType> _types,ref ComboBox sl)
         {
             intefaces = new List<NetworkInterface>();
             sl.Items.Clear();
             foreach (NetworkInterface item in NetworkInterface.GetAllNetworkInterfaces())
             {
                 Debug.WriteLine(item.Id+":"+item.Name);
-                if (item.NetworkInterfaceType == _type && item.OperationalStatus == OperationalStatus.Up)
+                if (_types.Contains(item.NetworkInterfaceType) && item.OperationalStatus == OperationalStatus.Up)
                 {
                     intefaces.Add(item);
                     sl.Items.Add(item.Name);
+                    sl.Background = interfaceTint[_types.IndexOf(item.NetworkInterfaceType)];
                 }
             }
         }
@@ -289,7 +292,7 @@ namespace IP_Changer
                 setDHCP(dataset.adapterIndex);
             }
             string currentId = intefaces[SocketList.SelectedIndex].Id;
-            FindIntefaces(NetworkInterfaceType.Ethernet, ref SocketList);
+            FindIntefaces(availableInterfaces, ref SocketList);
             SocketList.SelectedIndex = findInterface(currentId);
             //SocketList_SelectionChanged(sender,null);
         }
@@ -309,7 +312,7 @@ namespace IP_Changer
                 return;
             }
             string currentId = intefaces[SocketList.SelectedIndex].Id;
-            FindIntefaces(NetworkInterfaceType.Ethernet, ref SocketList);
+            FindIntefaces(availableInterfaces, ref SocketList);
             SocketList.SelectedIndex = findInterface(currentId);
         }
 
