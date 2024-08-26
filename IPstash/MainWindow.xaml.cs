@@ -16,6 +16,7 @@ using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Management;
 using System.Diagnostics;
+using System.Windows.Threading;
 
 namespace IP_Changer
 {
@@ -24,6 +25,8 @@ namespace IP_Changer
     /// </summary>
     public partial class MainWindow : Window
     {
+        readonly List<NetworkInterfaceType> availableInterfaces = new List<NetworkInterfaceType>{ NetworkInterfaceType.Ethernet, NetworkInterfaceType.Wireless80211 };
+        readonly List<Brush> interfaceTint = new List<Brush> { Brushes.LightGray,Brushes.Olive };
         List<NetworkInterface> intefaces = new List<NetworkInterface>();
         DataWriter dataWriter;
         SocketDataset dataset = new SocketDataset("0.0.0.0", "0.0.0.0",false, "0.0.0.0",-1);
@@ -46,21 +49,24 @@ namespace IP_Changer
             IPselection.Children.Add(selectIP1);
             */
 
-            FindIntefaces(NetworkInterfaceType.Ethernet,ref SocketList);
+            FindIntefaces(availableInterfaces, ref SocketList);
             SocketList.SelectedIndex = findInterface(dataWriter.activeID);
-
+            foreach (var res in dataWriter.resources)
+            {
+                ipGrid.Items.Add(res.Key);
+            }
             SocketList_SelectionChanged(null, null);
 
 
         }
-        void FindIntefaces(NetworkInterfaceType _type,ref ComboBox sl)
+        void FindIntefaces(List<NetworkInterfaceType> _types,ref ComboBox sl)
         {
             intefaces = new List<NetworkInterface>();
             sl.Items.Clear();
             foreach (NetworkInterface item in NetworkInterface.GetAllNetworkInterfaces())
             {
                 Debug.WriteLine(item.Id+":"+item.Name);
-                if (item.NetworkInterfaceType == _type && item.OperationalStatus == OperationalStatus.Up)
+                if (_types.Contains(item.NetworkInterfaceType) && item.OperationalStatus == OperationalStatus.Up)
                 {
                     intefaces.Add(item);
                     sl.Items.Add(item.Name);
@@ -285,7 +291,7 @@ namespace IP_Changer
                 setDHCP(dataset.adapterIndex);
             }
             string currentId = intefaces[SocketList.SelectedIndex].Id;
-            FindIntefaces(NetworkInterfaceType.Ethernet, ref SocketList);
+            FindIntefaces(availableInterfaces, ref SocketList);
             SocketList.SelectedIndex = findInterface(currentId);
             //SocketList_SelectionChanged(sender,null);
         }
@@ -300,8 +306,12 @@ namespace IP_Changer
 
         private void Button_Reload(object sender, RoutedEventArgs e)
         {
+            if (SocketList.SelectedIndex == -1)
+            {
+                return;
+            }
             string currentId = intefaces[SocketList.SelectedIndex].Id;
-            FindIntefaces(NetworkInterfaceType.Ethernet, ref SocketList);
+            FindIntefaces(availableInterfaces, ref SocketList);
             SocketList.SelectedIndex = findInterface(currentId);
         }
 
@@ -315,6 +325,7 @@ namespace IP_Changer
             catch
             {}
             dataWriter.write(activeID);
+            dataWriter.save();
         }
 
         private void Button_OpenIPMenu(object sender, RoutedEventArgs e)
@@ -334,9 +345,99 @@ namespace IP_Changer
             }
         }
 
+        private void StartCloseTimer()
+        {
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(2d);
+            timer.Tick += TimerTick;
+            timer.Start();
+        }
+        private void TimerTick(object sender, EventArgs e)
+        {
+            DispatcherTimer timer = (DispatcherTimer)sender;
+            timer.Stop();
+            timer.Tick -= TimerTick;
+            this.myPopup.IsOpen = false;
+        }
         private void Add_Set(object sender, RoutedEventArgs e)
         {
-            ipGrid.Items.Add(dataset.ipAddress);
+            try {
+                dataWriter.update(
+                    IpInput.Text,
+                    new SocketDataset(
+                        IpInput.Text,
+                        maskInput.Text,
+                        true, 
+                        gatewayInput.Text,
+                        0));
+                ipGrid.Items.Add(IpInput.Text);
+            }
+            catch(Exception ex)
+            {
+                myPopup.IsOpen = true;
+                StartCloseTimer();
+            }
+        }
+
+
+        private void selectIP(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ListViewItem senderLV = (ListViewItem)sender;
+            Debug.WriteLine("IP.selected");
+            Debug.WriteLine(e);
+            Debug.WriteLine(senderLV);
+            SocketDataset selectedDataset;
+            try
+            {
+                string name = (string)(senderLV.Content);
+                selectedDataset = (SocketDataset)dataWriter.get(name);
+            }
+            catch (Exception ex)
+            {
+                selectedDataset = dataset;
+                Debug.WriteLine(ex.ToString());
+            }
+            dataset.ipAddress = selectedDataset.ipAddress;
+            dataset.mask = selectedDataset.mask;
+            dataset.defaultGateway = selectedDataset.defaultGateway;
+            dataset.adapterIndex = dataset.adapterIndex;
+            dataset.isStatic = true;
+            Button_Revert(null, null);
+        }
+
+        private void deleteItem(object sender, RoutedEventArgs e)
+        {
+            dataWriter.remove((string)ipGrid.SelectedItem);
+            ipGrid.Items.Remove(ipGrid.SelectedItem);
+        }
+
+        private void select(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("IP.selected");
+            Debug.WriteLine(e);
+            Debug.WriteLine((string)ipGrid.SelectedItem);
+            SocketDataset selectedDataset;
+            try
+            {
+                string name = (string)ipGrid.SelectedItem;
+                selectedDataset = (SocketDataset)dataWriter.get(name);
+            }
+            catch (Exception ex)
+            {
+                selectedDataset = dataset;
+                Debug.WriteLine(ex.ToString());
+            }
+            dataset.ipAddress = selectedDataset.ipAddress;
+            dataset.mask = selectedDataset.mask;
+            dataset.defaultGateway = selectedDataset.defaultGateway;
+            dataset.adapterIndex = dataset.adapterIndex;
+            dataset.isStatic = true;
+            Button_Revert(null, null);
         }
     }
 }

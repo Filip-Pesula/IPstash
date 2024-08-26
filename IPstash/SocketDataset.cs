@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IP_Changer
 {
-    internal class SocketDataset
+    public class SocketDataset
     {
         public String ipAddress { get;  set; }
         public String mask { get;  set; }

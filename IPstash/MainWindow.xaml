@@ -9,7 +9,7 @@
         <ComboBox x:Name="SocketList" SelectionChanged="SocketList_SelectionChanged" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="25                   " Width="235"/>
 
         <TextBox x:Name="IpInput" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,40,0,0" TextWrapping="Wrap" Text="0.0.0.0" VerticalAlignment="Top" Width="235" Height="25"/>
-        <ToggleButton x:Name="setDhcp" Unchecked="setDhcp_Unchecked"  Checked="setDhcp_Checked"  IsChecked="False" HorizontalAlignment="Left" Margin="250,40,0,0" VerticalAlignment="Top" Height="25" Width="60" Background="Black" Foreground="White" BorderBrush="#FF313131" >
+        <ToggleButton x:Name="setDhcp" Unchecked="setDhcp_Unchecked"  Checked="setDhcp_Checked"  IsChecked="False" HorizontalAlignment="Left" Margin="250,40,0,0" VerticalAlignment="Top" Height="25" Width="60" Background="Black" Foreground="White" BorderBrush="#FF313131">
             <ToggleButton.Style >
                 <Style>
                     <Setter  Property="ContentControl.Content" Value="DHCP" />
@@ -24,11 +24,11 @@
         </ToggleButton>
         <TextBox x:Name="maskInput" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,70,0,0" TextWrapping="Wrap" Text="0.0.0.0" VerticalAlignment="Top" Width="235" Height="25"/>
         <TextBox x:Name="gatewayInput" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" Text="0.0.0.0" VerticalAlignment="Top" Width="235" Height="25"/>
-        <Button Content="Revert" Click="Button_Revert" HorizontalAlignment="Left" Margin="10,158,0,0" VerticalAlignment="Top" Height="27" Width="150" Foreground="White" Background="Black" BorderBrush="#FF313131"/>
-        <Button Content="Aply" Click="Button_Aply" HorizontalAlignment="Left" Margin="165,158,0,0" VerticalAlignment="Top" Height="27" Width="145" Background="Black" Foreground="White" BorderBrush="#FF313131"/>
+        <Button Content="Revert" Click="Button_Revert" HorizontalAlignment="Left" Margin="15,158,0,0" VerticalAlignment="Top" Height="27" Width="150" Foreground="White" Background="Black" BorderBrush="#FF313131"/>
+        <Button Content="Apply" Click="Button_Aply" HorizontalAlignment="Left" Margin="175,158,0,0" VerticalAlignment="Top" Height="27" Width="145" Background="Black" Foreground="White" BorderBrush="#FF313131"/>
         <Button Content="Reload" Click="Button_Reload" HorizontalAlignment="Left" Margin="250,10,0,0" VerticalAlignment="Top" Height="27" Width="60" Background="Black" Foreground="White" BorderBrush="#FF313131"/>
-        <Button Content="&gt;&gt;" Click="Button_OpenIPMenu" HorizontalAlignment="Left" Margin="315,11,0,0" VerticalAlignment="Top" Height="25" Width="25" />
-        <Grid Margin="340,0,-141,0" Background="White">
+        <Button Content="&gt;&gt;" Click="Button_OpenIPMenu" HorizontalAlignment="Left" Margin="315,11,0,0" VerticalAlignment="Top" Height="25" Width="25"/>
+        <Grid Margin="340,0,-141,0" Background="#FF313131">
             <Grid.RowDefinitions>
                 <RowDefinition Height="27*"/>
                 <RowDefinition Height="173*"/>
@@ -45,9 +45,35 @@
                 </StackPanel.RenderTransform>
 
             </StackPanel>
-            <ListView x:Name="ipGrid" Grid.Row="1" av:ItemsSource="{av:SampleData ItemCount=5}" Margin="0,13,0,0">
-                
+            <ListView x:Name="ipGrid" Grid.Row="1" av:ItemsSource="{av:SampleData ItemCount=5}" Margin="10,13,0,0" SelectionChanged="selectIP" Background="#FF313131" Foreground="White" BorderThickness="0" HorizontalAlignment="Left" Width="121
+                      ">
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header = "Delete" Click="deleteItem"/>
+                        <MenuItem Header = "Select" Click="select"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
             </ListView>
         </Grid>
+        <Popup Name="myPopup" IsOpen="{Binding IsChecked, ElementName=TogglePopupButton}" Placement="Center" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="95,0,0,0" Grid.Column="1">
+            <Border BorderThickness="1">
+                <TextBlock Name="myPopupText" Background="#FF414141" Foreground="DarkRed" Padding="30">
+                Name already used, 
+                chose another one
+                </TextBlock>
+            </Border>
+        </Popup>
     </Grid>
+    <Window.Resources>
+        <Style TargetType="ListViewItem">
+            <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="DarkRed"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
 </Window>
