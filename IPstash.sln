@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPstash", "IPstash\IPstash.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{A8975AD5-C290-4E5E-943B-E94E97160260}"
 EndProject
-Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "Setup", "Setup\Setup.aiproj", "{D87F1330-D3E9-4416-AEB2-86F8BADBEACA}"
+Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "Setup", "Setup\Setup.aiproj", "{5039684B-06F8-4331-91E3-FBFCF2E49C77}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,12 +28,12 @@ Global
 		{A8975AD5-C290-4E5E-943B-E94E97160260}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8975AD5-C290-4E5E-943B-E94E97160260}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8975AD5-C290-4E5E-943B-E94E97160260}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D87F1330-D3E9-4416-AEB2-86F8BADBEACA}.All|Any CPU.ActiveCfg = DefaultBuild
-		{D87F1330-D3E9-4416-AEB2-86F8BADBEACA}.All|Any CPU.Build.0 = DefaultBuild
-		{D87F1330-D3E9-4416-AEB2-86F8BADBEACA}.Debug|Any CPU.ActiveCfg = DefaultBuild
-		{D87F1330-D3E9-4416-AEB2-86F8BADBEACA}.Debug|Any CPU.Build.0 = DefaultBuild
-		{D87F1330-D3E9-4416-AEB2-86F8BADBEACA}.Release|Any CPU.ActiveCfg = DefaultBuild
-		{D87F1330-D3E9-4416-AEB2-86F8BADBEACA}.Release|Any CPU.Build.0 = DefaultBuild
+		{5039684B-06F8-4331-91E3-FBFCF2E49C77}.All|Any CPU.ActiveCfg = DefaultBuild
+		{5039684B-06F8-4331-91E3-FBFCF2E49C77}.All|Any CPU.Build.0 = DefaultBuild
+		{5039684B-06F8-4331-91E3-FBFCF2E49C77}.Debug|Any CPU.ActiveCfg = DefaultBuild
+		{5039684B-06F8-4331-91E3-FBFCF2E49C77}.Debug|Any CPU.Build.0 = DefaultBuild
+		{5039684B-06F8-4331-91E3-FBFCF2E49C77}.Release|Any CPU.ActiveCfg = DefaultBuild
+		{5039684B-06F8-4331-91E3-FBFCF2E49C77}.Release|Any CPU.Build.0 = DefaultBuild
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using IP_Changer;
+using IPstash;
 using System.Xml.Linq;
 using System.Collections.Generic;
 
-namespace IP_Changer.Tests
+namespace IPstash.Tests
 {
     [TestClass()]
     public class UnitTest1
@@ -12,8 +12,8 @@ namespace IP_Changer.Tests
         [TestMethod()]
         public void serealizeSocketDatasetTest()
         {
-            SocketDataset socket = new IP_Changer.SocketDataset("192.168.1.2", "255.255.255.0", true, "192.168.1.1", 0);
-            XElement xelm = IP_Changer.ResourcePrarser.serealizeSocketDataset(new KeyValuePair<string, object> ("obj1",socket));
+            SocketDataset socket = new IPstash.SocketDataset("192.168.1.2", "255.255.255.0", true, "192.168.1.1", 0);
+            XElement xelm = IPstash.ResourcePrarser.serealizeSocketDataset(new KeyValuePair<string, object> ("obj1",socket));
             var res = ResourcePrarser.parseSocketDataset(xelm);
             SocketDataset parsedSocket = (SocketDataset)res.Value;
             Console.WriteLine(xelm);

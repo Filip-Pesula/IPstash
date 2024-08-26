@@ -18,7 +18,7 @@ using System.Management;
 using System.Diagnostics;
 using System.Windows.Threading;
 
-namespace IP_Changer
+namespace IPstash
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

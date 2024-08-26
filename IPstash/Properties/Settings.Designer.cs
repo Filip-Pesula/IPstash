@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IP_Changer.Properties
+namespace IPstash.Properties
 {
 
 
