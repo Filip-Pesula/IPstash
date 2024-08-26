@@ -57,7 +57,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IP_Changer\IP_Changer.csproj">
+    <ProjectReference Include="..\IPstash\IPstash.csproj">
       <Project>{fd93c125-5f3a-4455-af12-26edabc26699}</Project>
       <Name>IP_Changer</Name>
     </ProjectReference>
