@@ -70,7 +70,6 @@ namespace IP_Changer
                 {
                     intefaces.Add(item);
                     sl.Items.Add(item.Name);
-                    sl.Background = interfaceTint[_types.IndexOf(item.NetworkInterfaceType)];
                 }
             }
         }
