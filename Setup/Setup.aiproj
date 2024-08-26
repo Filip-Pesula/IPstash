@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">All</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>d87f1330-d3e9-4416-aeb2-86f8badbeaca</ProjectGuid>
+    <ProjectGuid>5039684b-06f8-4331-91e3-fbfcf2e49c77</ProjectGuid>
     <OutputType>msi</OutputType>
     <ProjectHome>.</ProjectHome>
     <StartupFile>Setup.aip</StartupFile>
@@ -16,22 +16,11 @@
     <LoadFromTemplate>
     </LoadFromTemplate>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'DefaultBuild' ">
-    <OutputPath>Release</OutputPath>
-    <PackageName>IPstashSetup</PackageName>
-  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'DefaultBuild' " />
   <ItemGroup>
-    <Compile Include="setup.aip">
-      <SubType>Content</SubType>
+    <Compile Include="Setup.aip">
+      <SubType>Code</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\IP_Changer\IP_Changer.csproj">
-      <Name>IP_Changer</Name>
-      <Project>{fd93c125-5f3a-4455-af12-26edabc26699}</Project>
-      <Private>True</Private>
-      <OutputsToImport>PrimaryOutput;References</OutputsToImport>
-    </ProjectReference>
   </ItemGroup>
   <Target Name="Build">
     <Error Text="This project requires Advanced Installer tool. Please download it from https://www.advancedinstaller.com/download.html" />

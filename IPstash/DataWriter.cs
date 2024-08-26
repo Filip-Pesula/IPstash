@@ -7,7 +7,7 @@ using System.IO;
 using System.Reflection;
 using System.Diagnostics;
 using System.Xml.Linq;
-namespace IP_Changer
+namespace IPstash
 {
     internal class DataWriter
     {

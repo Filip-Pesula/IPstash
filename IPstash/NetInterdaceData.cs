@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.NetworkInformation;
 
-namespace IP_Changer
+namespace IPstash
 {
     internal class NetInterdaceData
     {
